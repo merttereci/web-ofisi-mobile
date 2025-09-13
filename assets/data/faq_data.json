@@ -1,0 +1,93 @@
+{
+  "faq_items": [
+    {
+      "id": 1,
+      "question": "Kurulum sonrası, 500 hatası veya beyaz ekran sorunu",
+      "description":"Değerli Müşterimiz,\n\nKurulum esnasında genelde karşılaşacağınız bir kaç husus bulunmaktadır. Konu ile ilgili destek bildirimi açmadan önce bu yazımızı sizlere yardımcı olması açısından yayınlamayı uygun gördük.\n\n- Internal Server Error 500 Hatası. veya Beyaz Ekran.\n- Kurulum Sonrası Çıkan İngilizce Uyarılar.\n\nBu hatalar, genel olarak sunucunuzdaki ioncube versiyonunun düşük olmasından kaynaklanmaktadır. Yazılımlarımızın çalışabilmesi için sunucunuzda güncel ioncube sürümünün yüklü olması gerekiyor. Aynı zamanda PHP versiyonunuz 5.5 sürümün altında isede bu hatayı alabilirsiniz.\n\nÇözüm için: Hosting hizmet aldığınız firma ile görüşerek, ioncube sürümünü son sürüm olarak güncellemelerini isteyiniz. aynı zamanda PHP sürümünün 7.2 olmasını talep ediniz.\n\nKonuyla ilgili aşağıdaki videoyuda izleyebilirsiniz",
+      "youtube_url": "https://www.youtube.com/watch?v=gLkJnsZdQOE&t=1s",
+      "extra_link": null
+    },
+    {
+      "id": 2,
+      "question": "SMTP Ayarları Sorunu (mail gönderilmedi hatası)",
+    "description": "Son zamanlarda sıkça karşılaşır olduğumuz \"iletişim formları çalışmıyor\" - \"smtp problemi\" – \"mail gelmiyor\" vb. bildirimler nedeniyle, bu makaleyi siz değerli müşterilerimiz için yazmayı zorunlu gördük. Bu nedenle, lütfen bu makalemizi dikkatle inceleyiniz.\n\nYazılımlarımızda bulunan iletişim formu, teklif formu, üyelik bildirimleri ve toplu mail gibi benzeri işlemler, standart olarak SMTP aracılığı ile e-posta ve parola doğrulamalı olarak çalışmaktadır. Yani, bunların çalışabilmesi için hostunuza ait çalışan bir e-posta ve parola ya sahip olmalısınız.\n\nBuraya kadar hem fikir iseniz ve elinizde mevcut bir e-posta ve parolanız var ise, bunu yazılımlarımızdaki genel ayarlarda bulunan smtp bilgileri kısmına tanımladığınızda, sistem SORUNSUZ çalışır. Çünkü ilgili bölümler, Google üzerinde bulabileceğiniz standart smtp yapısı ile çalışmaktadır.\n\nÖRNEK SMTP AYARLARI\n\nSmtp Mail host: mail.siteadi.com\nSmtp Mail: ornek@siteadi.com\nSmtp Mail Şifre: mail şifreniz\nSmtp Mail Port: 587\n\nNot: Sadece siteadi.com uzantılı mail adresleri ile smtp ayarlarını giriniz (Cpanel,Plesk Panel, DirectPanelde açmış olduğunuz mail hesapları)\n\nEğer elinizdeki smtp bilgilerini girdiğiniz halde sistem çalışmıyorsa, bu sorunu host hizmeti aldığınız firma ile görüşmelisiniz. Yazılımı sizlere sunmadan önce bizler bu gibi şeyleri defalarca test edip stabilizasyonunu test etmiş ve onaylamış bulunmaktayız. Kaldı ki, yazılım sadece sizde değil, siz den önce satın almış müşterilerimizde de bulunmakta olup herhangi bir sorun yaşamamaktadırlar.",
+        "youtube_url": null,
+    "extra_link": null
+    },
+     {
+      "id": 3,
+      "question": "SSL Aktif Etme ve Otomatik Https",
+      "description": "Hostunuza SSL hizmeti aldınız ve sitenize Https:// şeklinde girildiğinde yeşil bar aktif oluyor ise;\n\nWeb sitenizde SSL çalıştırmak ve sitenize ne şekilde girilirse girilsin otomatik Https olarak açılması için, tek yapmanız gereken aşağıda verilen kodu ftp'nizin anadizininde bulunan .htaccess dosyasına eklemektir.\n\nAşağıdaki kodu .htaccess dosyanızın en üst kısmına ekleyiniz;\n\nRewriteCond %{SERVER_PORT} 80\nRewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]" ,
+     "youtube_url": "https://www.youtube.com/watch?v=KWbG2A-6Hn4",
+      "extra_link": null
+    },
+    {
+      "id": 4,
+      "question": "Web Sitesini google'a eklemek (Google Search Console)",
+    "description": "Web sitenizi google eklemek istiyorsanız aşağıda linkini paylaştığımız dosyaları indip tarif edilen adımları uygulayınız.\n\nRESİMLERİ İNDİR\n\nYada bu videoyu izleyiniz.",     
+     "youtube_url": "https://www.youtube.com/watch?v=RdoJcfKYOzk",
+     "extra_links": [
+              {   
+            "title": "Resimleri İndir",
+            "url": "https://www.web-ofisi.com/dokuman/google_site_ekleme.rar"
+             },
+            {
+            "title": "Google Console",
+            "url": "https://www.google.com/webmasters/tools/"
+            }
+        ]
+    },
+     {
+      "id": 5,
+      "question": "Sitene Whatsapp destek hattı ekleme işlemi",
+      "description": "Sitene Whatsapp online destek hattı eklemek istiyorsanız aşağıda ki videoyu izleyiniz.",
+      "youtube_url": "https://www.youtube.com/watch?v=Oe3rJky-zOM",
+      "extra_link": {
+        "title": "Gerekli kodu indir",
+        "url": "https://web-ofisi.com/dokuman/whatsapp.rar"
+      }
+    }, 
+     {
+      "id": 6,
+      "question": "Web sitene google maps ekleme işlemi",
+      "description": "Web sitenize google maps haritası ekleyebilmek için aşağıdaki videoyu izleyebilirsiniz.",
+      "youtube_url": "https://www.youtube.com/watch?v=f2DxXoWzMyQ",
+      "extra_link": null
+    },
+    {
+      "id": 7,
+      "question": "Sitene canlı destek ekleme işlemi",
+     "description":"Web sitenize canlı destek eklemek istiyorsanız eğer aşağıdaki videoyu izleyebilirsiniz.",
+      "youtube_url": "https://www.youtube.com/watch?v=EZmkp4wZCD4",
+      "extra_link": null
+    },
+     {
+      "id": 8,
+      "question": "Yönetim panelinde işlem yaparken \"Hata oluştu.!\" uyarısı ve çözümü",
+      "description": "Sayın üyemiz, Yönetim panelinde içerik eklerken veya güncellerken sistemin herhangi bir işlem yapmadan Hata oluştu uyarısı hakkında bir çözüm videosu yayınladık. Genelde isimtescil.net üzerinden hosting alan müşterilerimizin karşılaşmış olduğu bu hatanın çözümünü aşağıdaki videomuzu izleyerek sorunu giderebilirsiniz",
+      "youtube_url": "https://www.youtube.com/watch?v=RmsRZJUdeQQ",
+      "extra_link": null
+    },
+    {
+      "id": 9,
+      "question": "Script kurulumu nasıl yapılır?",
+      "description": "Satın almış yada alacağınız scriptlerin kurulum işlemleri hakkında bilgi sahibi olmak için aşağıdaki videoyu izleyebilirsiniz",
+      "youtube_url": "https://www.youtube.com/watch?v=-LZoeZVRk_8",
+      "extra_link": null
+    },
+     {
+      "id": 10,
+      "question": "Site link kısmında // (Çift Slaş) nasıl kaldırılır?",
+      "description": "Merhaba Değerli Web Ofisi Ziyaretçileri,\n\nAşağıdaki videomuzda Web sitemizin link sonunda // işaretini nasıl kaldırırız onu anlattık. Lütfen videomuzu dikkatle izleyiniz.",
+       "youtube_url": "https://www.youtube.com/watch?v=gddK0AKQHy0",        
+      "extra_link": null
+    },
+    {
+      "id": 11,
+      "question": "Web sitemde renk değişimi nasıl yapılır?",
+      "description": "Web sitenizin renklerini değiştirmek istiyorsanız videomuzu izleyip gerekli renk değişikliğini çok kolay bir şekilde yapabilirsiniz",
+      "youtube_url": "https://www.youtube.com/watch?v=zYC3xAk6MQc",
+      "extra_link": null
+    } 
+  ]
+}
