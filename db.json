@@ -208,7 +208,7 @@
       "resim": "",
       "il": "İstanbul",
       "ilce": "Beşiktaş",
-      "adres": "Levent Mah. Büyükdere Cad. No:199/15",
+      "adres": "Samsun/Atakum",
       "tc": "55566677788",
       "firmaadi": "Tereci Yazılım Ltd. Şti.",
       "vergino": "5556667778",
@@ -950,6 +950,58 @@
       "created_at": "2025-09-13T10:23:54.418949",
       "updated_at": "2025-09-13T10:23:54.419147",
       "id": 5
+    },
+    {
+      "uyeid": 6,
+      "scriptid": 163,
+      "ad": "Mert",
+      "soyad": "Tereci",
+      "email": "mert@gmail.com",
+      "telefon": "5557778899",
+      "il": 0,
+      "ilce": 0,
+      "adres": "Samsun/Atakum",
+      "tc": "55566677788",
+      "firmaadi": "Tereci Yazılım Ltd. Şti.",
+      "vergino": "5556667778",
+      "vergidairesi": "Beşiktaş Vergi Dairesi",
+      "firma_tel": "02122123456",
+      "firma_adres": "Levent Plaza Kat:15 No:1501",
+      "kodu": "webofisi159",
+      "bonus": 0,
+      "scriptadi": "Çiçekçi İnternet Sitesi (GELİŞMİŞ E-TİCARET MODÜLLÜ - Yeni Dil Sistemli)",
+      "seo": "",
+      "tutar": "4200.00",
+      "fiyati": "3500.00",
+      "resim": "https://www.web-ofisi.com/tema/webofisi/uploads/scriptler/cicekci.png",
+      "odeme": "beklemede",
+      "havale": "",
+      "domain": "",
+      "lisans": "",
+      "lisanstip": 0,
+      "surum": "",
+      "mesaj": "Mobil uygulama üzerinden sipariş verildi",
+      "durum": 0,
+      "ip": "127.0.0.1",
+      "ay": "09",
+      "ktarih": "23.09.2025",
+      "tarih": "2025-09-23 16:37:39.837264",
+      "kdv": 20,
+      "vergi": 1,
+      "vergioran": 20,
+      "fatura": 1,
+      "spno": "SP20250923_163_6",
+      "paytronay": 0,
+      "indirmetarihi": null,
+      "ftp": null,
+      "parasutuyeid": 204,
+      "parasut_invoice": null,
+      "parasut_invoice_send": null,
+      "mailsend": 0,
+      "yazilimmailsend": 0,
+      "created_at": "2025-09-23T16:37:39.843362",
+      "updated_at": "2025-09-23T16:37:39.843649",
+      "id": 6
     }
   ],
   "favorites": [
@@ -962,20 +1014,32 @@
     {
       "user_id": 6,
       "script_id": 165,
-      "created_at": "2025-09-02T20:48:49.097407",
-      "id": 4
+      "created_at": "2025-09-23T16:16:46.137395",
+      "id": 6
     },
     {
       "user_id": 6,
       "script_id": 163,
-      "created_at": "2025-09-02T20:48:50.431237",
-      "id": 5
+      "created_at": "2025-09-23T16:29:34.536306",
+      "id": 7
     },
     {
       "user_id": 6,
-      "script_id": 161,
-      "created_at": "2025-09-02T20:48:52.066774",
-      "id": 6
+      "script_id": 159,
+      "created_at": "2025-09-23T16:29:35.849585",
+      "id": 8
+    },
+    {
+      "user_id": 6,
+      "script_id": 153,
+      "created_at": "2025-09-23T16:29:37.064938",
+      "id": 9
+    },
+    {
+      "user_id": 6,
+      "script_id": 149,
+      "created_at": "2025-09-23T16:29:38.029074",
+      "id": 10
     }
   ],
   "krediler": [
@@ -1187,6 +1251,29 @@
       "created_at": "2025-09-03T18:19:42.803172",
       "updated_at": "2025-09-03T18:19:42.803192",
       "id": 1
+    },
+    {
+      "uyeid": 6,
+      "paketadi": "İDEAL HOSTİNG",
+      "periyod": "1 yıl",
+      "sunucu": "0",
+      "domain": "www.abc.com",
+      "username": "",
+      "baslangic": "2025-09-23",
+      "yenileme": "2026-09-23",
+      "bitis": "2026-09-22",
+      "durum": 0,
+      "hdurum": null,
+      "aciklama": "Mobil uygulama üzerinden sipariş verildi - İDEAL HOSTİNG",
+      "tarih": "2025-09-23 16:37:39.889424",
+      "mailtarih": null,
+      "smstarih": null,
+      "mail": 0,
+      "sms": null,
+      "paytronay": 0,
+      "created_at": "2025-09-23T16:37:39.890523",
+      "updated_at": "2025-09-23T16:37:39.890585",
+      "id": 2
     }
   ]
 }
