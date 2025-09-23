@@ -203,6 +203,93 @@ Production-ready bir backend deneyimi sağlamak için **json-server** kullanılm
 - Gerçek zamanlı veri güncellemeleri
 - Production API'ye kolay geçiş imkanı sağlar
 
+## Uygulama Ekranları
+
+### Kimlik Doğrulama
+<div align="center">
+  <img src="screenshots/01_auth_screen.png" width="200" alt="Auth Screen"/>
+  <img src="screenshots/02_register_screen.png" width="200" alt="Register 1"/>
+  <img src="screenshots/03_register_screen.png" width="200" alt="Register 2"/>
+  <img src="screenshots/04_register_screen.png" width="200" alt="Register 3"/>
+</div>
+
+*Giriş yapma ya da kayıt olmaya gitme ekranı - Kayıt olma ekranı*
+
+### Ana Sayfa
+<div align="center">
+  <img src="screenshots/05_home_screen.png" width="200" alt="Home Empty"/>
+  <img src="screenshots/06_home_screen.png" width="200" alt="Home With Items"/>
+</div>
+
+*Ana sayfa - Ana sayfa (rastgele bir ürünün sepete ve favorilere eklenmiş hali)*
+
+### Ürün Listesi ve Detay
+<div align="center">
+  <img src="screenshots/07_product_list_screen.png" width="200" alt="Product List"/>
+  <img src="screenshots/08_product_list_screen.png" width="200" alt="Category Modal"/>
+  <img src="screenshots/09_product_list_screen.png" width="200" alt="Filtered Products"/>
+</div>
+
+*Ürün listesi - Kategori seçici - Filtrelenmiş liste*
+
+<div align="center">
+  <img src="screenshots/10_product_detail_screen.png" width="200" alt="Product Detail"/>
+  <img src="screenshots/11_product_detail_screen.png" width="200" alt="Product Detail Actions"/>
+</div>
+
+*Ürün detay sayfası - Ürün detay sayfası (butonlara tıklanmış hali)*
+
+### Hosting Hizmetleri
+<div align="center">
+  <img src="screenshots/12_hosting_screen.png" width="200" alt="Hosting 1"/>
+  <img src="screenshots/13_hosting_screen.png" width="200" alt="Hosting 2"/>
+  <img src="screenshots/14_hosting_screen.png" width="200" alt="Hosting Dialog"/>
+  <img src="screenshots/15_hosting_screen.png" width="200" alt="Hosting Dialog Active"/>
+</div>
+
+*Hosting hizmetleri listesi - Sepete Ekleme Dialogu (inaktif butonlu) - Bilgiler girildikten sonra aktif butonlu*
+
+### Destek Sistemi
+<div align="center">
+  <img src="screenshots/16_support_screen.png" width="200" alt="Support FAQ"/>
+  <img src="screenshots/17_support_screen.png" width="200" alt="Support FAQ Expanded"/>
+  <img src="screenshots/18_support_screen.png" width="200" alt="Support New Request 1"/>
+  <img src="screenshots/19_support_screen.png" width="200" alt="Support New Request 2"/>
+</div>
+
+*Sıkça sorulan sorular - Genişletilmiş bir sıkça sorulan soru elementi - Yeni talep oluşturma*
+
+### Profil
+<div align="center">
+  <img src="screenshots/20_profile_screen.png" width="200" alt="Profile 1"/>
+  <img src="screenshots/21_profile_screen.png" width="200" alt="Profile 2 Logout"/>
+</div>
+
+*Profil ekranı - Profil ekranı (çıkış dialog'u ile)*
+
+###  Favoriler
+<div align="center">
+  <img src="screenshots/22_favorites_screen.png" width="200" alt="Favorites"/>
+</div>
+
+*Favoriler ekranı*
+
+### Sepet ve Ödeme Sistemi
+<div align="center">
+  <img src="screenshots/23_cart_screen.png" width="200" alt="Cart Mixed"/>
+  <img src="screenshots/24_cart_screen.png" width="200" alt="Cart Scripts"/>
+  <img src="screenshots/25_checkout_screen.png" width="200" alt="Checkout 1"/>
+  <img src="screenshots/26_checkout_screen.png" width="200" alt="Checkout 2"/>
+</div>
+
+*Karışık ürünlü sepet - Web scriptleri(tek tür ürün) sepeti - Checkout ekranı*
+
+<div align="center">
+  <img src="screenshots/27_order_success_screen.png" width="200" alt="Order Success"/>
+</div>
+
+*Prototip sipariş başarılı ekranı*
+
 
 
 ## ** SERVİS KATMANI**
