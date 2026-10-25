@@ -2,82 +2,80 @@
 
 [English](README.md) | **Türkçe**
 
-Hazır web yazılımları (scriptler) ve hosting paketleri satışı için, 30 günlük staj projesi olarak tek başına geliştirilmiş bir Flutter e-ticaret uygulaması. XML'den 158 web scripti listeler, kullanıcı hesapları, favoriler, sepet, sipariş ve destek taleplerini json-server ile simüle edilen bir REST API üzerinden yönetir.
+Hazır web yazılımları (script) ve hosting paketleri satan bir Flutter e-ticaret uygulaması. 30 günlük stajım sırasında tek başıma geliştirdim.
+
+Uygulama 158 web scriptini XML'den çekip listeliyor. Kullanıcı hesapları, favoriler, sepet, sipariş ve destek talepleri ise json-server ile taklit edilen bir REST API üzerinden çalışıyor.
 
 <table>
   <tr>
-    <td align="center"><img src="screenshots/01_auth_screen.png" width="180"><br>Giriş</td>
+    <td align="center"><img src="screenshots/01_auth_screen.png" width="180"><br>Giriş ekranı</td>
     <td align="center"><img src="screenshots/06_home_screen.png" width="180"><br>Ana sayfa</td>
     <td align="center"><img src="screenshots/07_product_list_screen.png" width="180"><br>Ürün listesi</td>
     <td align="center"><img src="screenshots/10_product_detail_screen.png" width="180"><br>Ürün detayı</td>
   </tr>
   <tr>
     <td align="center"><img src="screenshots/12_hosting_screen.png" width="180"><br>Hosting paketleri</td>
-    <td align="center"><img src="screenshots/18_support_screen.png" width="180"><br>Yeni destek talebi</td>
+    <td align="center"><img src="screenshots/18_support_screen.png" width="180"><br>Yeni talep formu</td>
     <td align="center"><img src="screenshots/23_cart_screen.png" width="180"><br>Sepet</td>
-    <td align="center"><img src="screenshots/25_checkout_screen.png" width="180"><br>Sipariş</td>
+    <td align="center"><img src="screenshots/25_checkout_screen.png" width="180"><br>Sipariş ekranı</td>
   </tr>
 </table>
 
 ## Kullanılan Teknolojiler
 
 - Flutter ve Dart
-- State yönetimi için Provider
-- Mock REST backend olarak json-server (db.json)
-- Ürün kataloğu için XML parsing
-- Oturum kalıcılığı için SharedPreferences
+- Provider (durum yönetimi)
+- json-server (deneme amaçlı REST sunucusu, db.json)
+- XML ayrıştırma (ürün kataloğu)
+- SharedPreferences (oturum bilgisinin cihazda saklanması)
 
 ## Özellikler
 
-### Hesaplar
-- Form doğrulamalı giriş ve çok adımlı kayıt, aynı e-posta ile tekrar kayıt kontrolü
-- Uygulama yeniden açıldığında korunan token tabanlı oturum
-- Profil görüntüleme ve güncelleme
+### Hesap
+- Kullanıcı giriş yapabiliyor ya da birkaç adımlık bir formla kayıt olabiliyor. Formlar doğrulanıyor ve kayıtlı bir e-postayla ikinci kez kayıt olunamıyor.
+- Oturum token ile tutuluyor, uygulama kapatılıp açıldığında yeniden giriş yapmak gerekmiyor.
+- Profil bilgileri görüntülenip güncellenebiliyor.
 
 ### Ürünler
-- XML'den yüklenen 158 web scripti
-- Arama, kategori filtreleme ve sayfalama
-- Görsel galerili ve demo butonlu ürün detay sayfası
-- Tanıtım kartları ve yatay ürün şeridi içeren ana sayfa
+- 158 web scripti XML'den yükleniyor.
+- Ürünler arasında arama, kategoriye göre filtreleme ve sayfalama yapılabiliyor.
+- Ürün detay sayfasında görsel galerisi ve demo butonları bulunuyor.
+- Ana sayfada tanıtım kartları ve yana kaydırılan bir ürün şeridi yer alıyor.
 
 ### Sepet ve Sipariş
-- Scriptler ve hosting paketleri aynı sepette
-- Hosting paketleri, gerekli bilgiler girilince butonu aktifleşen bir dialog ile sepete ekleniyor
-- Sepet sadece ürün ID'lerini bir Set içinde tutuyor, ekle/çıkar toggle mantığıyla çalışıyor
-- Ara toplam, yüzde 20 KDV ve genel toplam ayrı ayrı gösteriliyor
-- Siparişi mock veritabanına yazan sipariş akışı (prototip, gerçek ödeme yok)
+- Scriptler ve hosting paketleri aynı sepete eklenebiliyor.
+- Hosting paketi eklerken açılan pencerede gerekli bilgiler girilmeden onay butonu aktif olmuyor.
+- Sepette yalnızca ürün ID'leri bir Set içinde tutuluyor. Aynı butona tekrar basmak ürünü sepetten çıkarıyor.
+- Ara toplam, yüzde 20 KDV ve genel toplam ayrı ayrı gösteriliyor.
+- Sipariş tamamlandığında veritabanına kaydediliyor. Gerçek bir ödeme adımı yok, akış prototip düzeyinde.
 
 ### Favoriler
-- Mock API üzerinden kullanıcıya özel favori ekleme ve çıkarma
+- Her kullanıcı kendi favorilerini ekleyip çıkarabiliyor, favoriler API üzerinden saklanıyor.
 
 ### Destek
-- 11 açılır sorudan oluşan SSS, YouTube eğitim videosu linkleri ve indirme linkleri
-- Kullanıcı bilgilerinin otomatik dolduğu, departman, öncelik ve hizmet seçimli destek talebi formu
-- Kamera veya galeriden sıkıştırılmış fotoğraf ekleme (maksimum genişlik 1024, kalite 80)
-- Talepler db.json dosyasına yazılıyor
+- 11 sorudan oluşan, açılıp kapanabilen bir SSS bölümü var. Yanında YouTube eğitim videolarına ve indirilebilir dosyalara linkler bulunuyor.
+- Destek talebi formunda kullanıcı bilgileri otomatik doluyor, departman, öncelik ve hizmet seçilebiliyor.
+- Talebe kameradan ya da galeriden fotoğraf eklenebiliyor. Fotoğraf eklenmeden önce küçültülüyor (en fazla 1024 piksel genişlik, yüzde 80 kalite).
+- Gönderilen talepler db.json dosyasına yazılıyor.
 
-### Navigasyon
-- 5 sekmeli alt menü (Ana Sayfa, Ürünler, Hosting, Destek, Profil)
-- IndexedStack ile sekme geçişlerinde durum korunuyor
-- Destek bölümü SSS, Yeni Talep ve Geçmiş Talepler sekmelerine ayrılıyor
+### Gezinme
+- Alt menüde Ana Sayfa, Ürünler, Hosting, Destek ve Profil olmak üzere 5 sekme var.
+- Sekmeler arasında geçiş yapıldığında ekranların durumu korunuyor (IndexedStack).
+- Destek bölümü kendi içinde SSS, Yeni Talep ve Geçmiş Talepler sekmelerine ayrılıyor.
 
 ## Mimari
 
-Uygulama iki farklı veri kaynağı kullanıyor.
+Uygulama verileri iki farklı kaynaktan alıyor. Ürün kataloğu XML'den geliyor. Kullanıcılar, siparişler, favoriler, destek talepleri ve diğer tablolar json-server üzerinde duruyor. Oturum bilgisi ve önbellek ise SharedPreferences ile cihazda saklanıyor.
 
-- **XML** ürün kataloğu için
-- **json-server** kullanıcılar, siparişler, favoriler, destek talepleri ve diğer tablolar için
-- **SharedPreferences** oturum ve önbellek için
+Durum yönetiminde Provider kullanılıyor. ProductProvider, UserProvider, CartProvider ve FavoritesProvider tek bir MultiProvider altında toplanıyor. Hem sepet hem ürün verisine ihtiyaç duyan ekranlarda ikisi Consumer2 ile birlikte dinleniyor.
 
-State yönetimi Provider ile, MultiProvider yapısı üzerinden yapılıyor (ProductProvider, UserProvider, CartProvider, FavoritesProvider). Hem sepet hem ürün verisine ihtiyaç duyan ekranlarda Consumer2 kullanılıyor.
-
-`lib/models/tables` altındaki modeller gerçek backend veritabanının tablolarıyla birebir uyumlu (üyeler, scriptler, kategoriler, siparişler, krediler, destek, hosting siparişleri, indirim kuponları, banka hesapları, slider). REST endpoint'leri de aynı yapıyı izlediği için production API'ye geçiş, temelde `MockApiService` içindeki `baseUrl` değişikliğiyle yapılacak şekilde tasarlandı.
+`lib/models/tables` altındaki modeller, gerçek veritabanındaki tabloların birebir karşılığı (üyeler, scriptler, kategoriler, siparişler, krediler, destek, hosting siparişleri, indirim kuponları, banka hesapları, slider). REST uç noktaları da aynı yapıyı izlediği için gerçek API'ye geçişte esas olarak `MockApiService` içindeki `baseUrl` değerini değiştirmek yetecek şekilde tasarlandı.
 
 ```dart
-// Geliştirme (Android emülatör)
+// Geliştirme ortamı (Android emülatör)
 static const String baseUrl = 'http://10.0.2.2:3000';
 
-// Production
+// Canlı ortam
 static const String baseUrl = 'https://yourdomain.com/api';
 ```
 
@@ -85,47 +83,47 @@ static const String baseUrl = 'https://yourdomain.com/api';
 
 ```
 lib/
-├── main.dart        # Uygulama girişi ve Provider yapılandırması
-├── models/          # Veri modelleri, tables/ backend şemasıyla uyumlu
-├── providers/       # Sepet, ürün, favori ve kullanıcı state'i
+├── main.dart        # Uygulamanın giriş noktası ve Provider kurulumu
+├── models/          # Veri modelleri, tables/ klasörü veritabanı şemasının karşılığı
+├── providers/       # Sepet, ürün, favori ve kullanıcı durumları
 ├── screens/         # Ekranlar ve 5 ana sekme
 ├── services/        # MockApiService, AuthService, ProductService (XML), FaqService
-└── widgets/         # Tekrar kullanılabilir arayüz bileşenleri
-assets/data/         # Türkiye il/ilçe verileri ve SSS verisi
+└── widgets/         # Tekrar kullanılan arayüz bileşenleri
+assets/data/         # Türkiye il ve ilçe verileri, SSS verisi
 db.json              # json-server veritabanı
 ```
 
 ## Kurulum
 
-Flutter SDK ve Node.js gerekli.
+Bilgisayarda Flutter SDK ve Node.js kurulu olmalı.
 
 ```bash
 # Bağımlılıkları yükle
 flutter pub get
 
-# Mock backend'i 3000 portunda başlat
+# Deneme sunucusunu 3000 portunda başlat
 npx json-server db.json --port 3000
 
 # Uygulamayı çalıştır
 flutter run
 ```
 
-Varsayılan `baseUrl` (10.0.2.2) Android emülatörden ana makineye erişim içindir. Farklı platform veya fiziksel cihaz için `lib/services/mock_api_service.dart` içinden değiştirilebilir.
+`baseUrl` varsayılan olarak 10.0.2.2 adresine ayarlı. Bu adres, Android emülatörün içinden bilgisayardaki sunucuya ulaşmayı sağlıyor. Başka bir platformda ya da gerçek bir cihazda çalıştırmak için `lib/services/mock_api_service.dart` dosyasındaki adresin değiştirilmesi gerekiyor.
 
-## Bilinen Sınırlamalar
+## Bilinen Eksikler
 
-- Eklenen fotoğraflar henüz kaydedilmiyor. Talebe sadece yer tutucu bir metin yazılıyor.
-- Geçmiş taleplerin listelenmesi ve talep durumunun güncellenmesi servis katmanında henüz yok.
-- Ödeme entegrasyonu yok. Sipariş akışı, siparişi db.json dosyasına yazan bir simülasyon.
-- Backend mock. Production PHP API'ye henüz bağlanılmadı.
+- Destek talebine eklenen fotoğraf henüz kaydedilmiyor, talebe yalnızca fotoğraf eklendiğini belirten bir metin yazılıyor.
+- Geçmiş talepleri listeleme ve talep durumunu güncelleme işlemleri servis katmanında henüz yazılmadı.
+- Ödeme entegrasyonu yok. Sipariş akışı, siparişi db.json dosyasına kaydeden bir simülasyon.
+- Sunucu tarafı şimdilik deneme amaçlı, gerçek PHP API'ye bağlantı yapılmadı.
 
-## Olası Sonraki Adımlar
+## Sonraki Adımlar
 
-- Production API'ye geçiş
+- Gerçek API'ye geçiş
 - Ödeme sistemi entegrasyonu
-- Mevcut siparişler tablosuyla sipariş takibi
+- Mevcut sipariş tablosu üzerinden sipariş takibi
 - Ürün karşılaştırma
-- Progressive web app desteği
+- Progressive Web App desteği
 
 ## Tüm Ekran Görüntüleri
 
@@ -134,33 +132,33 @@ Varsayılan `baseUrl` (10.0.2.2) Android emülatörden ana makineye erişim içi
 
 <table>
   <tr>
-    <td align="center"><img src="screenshots/02_register_screen.png" width="180"><br>Kayıt, adım 1</td>
-    <td align="center"><img src="screenshots/03_register_screen.png" width="180"><br>Kayıt, adım 2</td>
-    <td align="center"><img src="screenshots/04_register_screen.png" width="180"><br>Kayıt, adım 3</td>
-    <td align="center"><img src="screenshots/05_home_screen.png" width="180"><br>Ana sayfa, boş</td>
+    <td align="center"><img src="screenshots/02_register_screen.png" width="180"><br>Kayıt, 1. adım</td>
+    <td align="center"><img src="screenshots/03_register_screen.png" width="180"><br>Kayıt, 2. adım</td>
+    <td align="center"><img src="screenshots/04_register_screen.png" width="180"><br>Kayıt, 3. adım</td>
+    <td align="center"><img src="screenshots/05_home_screen.png" width="180"><br>Boş ana sayfa</td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/08_product_list_screen.png" width="180"><br>Kategori seçici</td>
-    <td align="center"><img src="screenshots/09_product_list_screen.png" width="180"><br>Filtrelenmiş liste</td>
-    <td align="center"><img src="screenshots/11_product_detail_screen.png" width="180"><br>Ürün detayı, butonlar</td>
-    <td align="center"><img src="screenshots/13_hosting_screen.png" width="180"><br>Hosting paketleri</td>
+    <td align="center"><img src="screenshots/08_product_list_screen.png" width="180"><br>Kategori seçimi</td>
+    <td align="center"><img src="screenshots/09_product_list_screen.png" width="180"><br>Filtrelenmiş ürünler</td>
+    <td align="center"><img src="screenshots/11_product_detail_screen.png" width="180"><br>Detay sayfası butonları</td>
+    <td align="center"><img src="screenshots/13_hosting_screen.png" width="180"><br>Hosting paketleri (2)</td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/14_hosting_screen.png" width="180"><br>Sepete ekleme dialogu</td>
-    <td align="center"><img src="screenshots/15_hosting_screen.png" width="180"><br>Dialog, buton aktif</td>
-    <td align="center"><img src="screenshots/16_support_screen.png" width="180"><br>SSS</td>
-    <td align="center"><img src="screenshots/17_support_screen.png" width="180"><br>SSS, açılmış</td>
+    <td align="center"><img src="screenshots/14_hosting_screen.png" width="180"><br>Sepete ekleme penceresi</td>
+    <td align="center"><img src="screenshots/15_hosting_screen.png" width="180"><br>Bilgiler girilmiş pencere</td>
+    <td align="center"><img src="screenshots/16_support_screen.png" width="180"><br>Sıkça sorulan sorular</td>
+    <td align="center"><img src="screenshots/17_support_screen.png" width="180"><br>Açılmış bir soru</td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/19_support_screen.png" width="180"><br>Yeni talep, devamı</td>
+    <td align="center"><img src="screenshots/19_support_screen.png" width="180"><br>Yeni talep formu (2)</td>
     <td align="center"><img src="screenshots/20_profile_screen.png" width="180"><br>Profil</td>
-    <td align="center"><img src="screenshots/21_profile_screen.png" width="180"><br>Çıkış dialogu</td>
+    <td align="center"><img src="screenshots/21_profile_screen.png" width="180"><br>Çıkış onayı</td>
     <td align="center"><img src="screenshots/22_favorites_screen.png" width="180"><br>Favoriler</td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/24_cart_screen.png" width="180"><br>Sepet, sadece scriptler</td>
-    <td align="center"><img src="screenshots/26_checkout_screen.png" width="180"><br>Sipariş, devamı</td>
-    <td align="center"><img src="screenshots/27_order_success_screen.png" width="180"><br>Sipariş başarılı</td>
+    <td align="center"><img src="screenshots/24_cart_screen.png" width="180"><br>Yalnızca script içeren sepet</td>
+    <td align="center"><img src="screenshots/26_checkout_screen.png" width="180"><br>Sipariş ekranı (2)</td>
+    <td align="center"><img src="screenshots/27_order_success_screen.png" width="180"><br>Sipariş tamamlandı</td>
     <td></td>
   </tr>
 </table>
@@ -177,16 +175,16 @@ Varsayılan `baseUrl` (10.0.2.2) Android emülatörden ana makineye erişim içi
 ```
 assets/
 ├── data/
-│   ├── cities.json                 # Türkiye il/ilçe verileri
-│   └── faq_data.json               # Sık sorulan sorular verisi
+│   ├── cities.json                 # Türkiye il ve ilçe verileri
+│   └── faq_data.json               # Sıkça sorulan sorular
 ├── launcher/
 │   └── icon.png
 └── logo/
     └── logo.png
 lib/
-├── main.dart                          # Ana uygulama dosyası ve Provider yapılandırması
+├── main.dart                          # Giriş noktası ve Provider kurulumu
 ├── models/                            # Veri modelleri
-│   ├── tables/                        # Veritabanı tablo modelleri
+│   ├── tables/                        # Veritabanı tablolarının modelleri
 │   │   ├── banka_hesaplari.dart
 │   │   ├── destek_cevaplar.dart
 │   │   ├── destek.dart
@@ -198,13 +196,13 @@ lib/
 │   │   ├── siparisler.dart
 │   │   ├── slider.dart
 │   │   └── uyeler.dart
-│   ├── product.dart                   # Ana ürün modeli (XML verisi)
+│   ├── product.dart                   # XML'den gelen ürünlerin modeli
 │   ├── hosting_cart_item.dart
 │   ├── register_form_data.dart
 │   ├── faq_item.dart
 │   └── support_ticket_form_data.dart
 ├── providers/
-│   ├── cart_provider.dart             # Sepet state yönetimi (minimal, ID tabanlı)
+│   ├── cart_provider.dart             # Sepet durumu, yalnızca ürün ID'leri tutuluyor
 │   ├── product_provider.dart
 │   ├── favorites_provider.dart
 │   └── user_provider.dart
@@ -216,26 +214,26 @@ lib/
 │   │   ├── support_tab.dart
 │   │   └── profile_tab.dart
 │   ├── auth_screen.dart                # Giriş ekranı
-│   ├── scrollable_register_screen.dart # Çok adımlı kayıt ekranı
-│   ├── cart_screen.dart                # Sepet ekranı (modal)
+│   ├── scrollable_register_screen.dart # Birkaç adımlı kayıt ekranı
+│   ├── cart_screen.dart                # Sepet ekranı
 │   ├── favorites_screen.dart
-│   ├── home_screen.dart                # Ana sayfa (AppBar'lı, sepet ve favori)
-│   ├── main_screen.dart                # Ana ekran (5 sekmeli navigasyon)
+│   ├── home_screen.dart                # Ana sayfa, üst barda sepet ve favoriler
+│   ├── main_screen.dart                # 5 sekmeli ana iskelet
 │   ├── product_detail_screen.dart
-│   ├── product_list_screen.dart        # Ürün listesi (AppBar'lı, sepet ve favori)
+│   ├── product_list_screen.dart        # Ürün listesi, üst barda sepet ve favoriler
 │   ├── hosting_screen.dart
 │   ├── support_screen.dart
 │   └── profile_screen.dart
 ├── services/
-│   ├── auth_service.dart              # Mock API ile kimlik doğrulama
-│   ├── mock_api_service.dart          # json-server HTTP servisi
-│   ├── product_service.dart           # Ürün servisi (XML parser)
-│   └── faq_service.dart               # SSS veri servisi
+│   ├── auth_service.dart              # Giriş ve kayıt işlemleri
+│   ├── mock_api_service.dart          # json-server ile HTTP iletişimi
+│   ├── product_service.dart           # XML'den ürünleri okuyan servis
+│   └── faq_service.dart               # SSS verisini okuyan servis
 └── widgets/
-    ├── cart_modal_widget.dart         # Tekrar kullanılabilir sepet modalı
-    ├── custom_bottom_navbar.dart      # 5 sekmeli özel alt menü
-    ├── flash_card_widget.dart         # Promosyon, haber ve tanıtım kartları
-    ├── product_card_v2.dart           # Kompakt ürün kartı (ana sayfa)
+    ├── cart_modal_widget.dart         # Her ekrandan açılabilen sepet penceresi
+    ├── custom_bottom_navbar.dart      # 5 sekmeli alt menü
+    ├── flash_card_widget.dart         # Kampanya, haber ve tanıtım kartları
+    ├── product_card_v2.dart           # Ana sayfadaki küçük ürün kartı
     ├── product_details_widgets/
     │   ├── product_demo_buttons.dart
     │   ├── product_description_section.dart
@@ -243,54 +241,54 @@ lib/
     │   └── product_image_gallery.dart
     └── product_lists_widgets/
         ├── category_selector_modal.dart
-        ├── compact_search_widget.dart # Kompakt arama ve kategori widget'ı
+        ├── compact_search_widget.dart # Arama kutusu ve kategori seçimi
         ├── error_widget.dart
         ├── loading_widget.dart
         ├── pagination_widget.dart
-        └── product_card.dart          # Ana ürün kartı (ürünler sayfası)
+        └── product_card.dart          # Ürünler sayfasındaki ürün kartı
 db.json                                # json-server veritabanı
 ```
 
 ### Servis Katmanı
 
-**MockApiService** (`lib/services/mock_api_service.dart`) json-server ile tüm HTTP iletişimini yönetiyor.
+**MockApiService** (`lib/services/mock_api_service.dart`) json-server'a giden tüm HTTP isteklerini üstleniyor.
 
-Destek
-- `createSupportTicket(ticketData)` yeni destek talebi oluşturur
-- `getUserTickets(userId)` kullanıcının taleplerini listeler (planlandı)
-- `updateTicketStatus(ticketId, status)` talep durumunu günceller (planlandı)
+Destek işlemleri
+- `createSupportTicket(ticketData)` yeni bir destek talebi oluşturuyor
+- `getUserTickets(userId)` kullanıcının taleplerini getirecek (henüz yazılmadı)
+- `updateTicketStatus(ticketId, status)` talebin durumunu güncelleyecek (henüz yazılmadı)
 
-Kullanıcı
+Kullanıcı işlemleri
 - `loginUser(email, password)`
 - `registerUser(userData)`
 - `updateUser(userId, userData)`
 
-Script
+Script işlemleri
 - `getAllScripts()`
 - `getScriptById(scriptId)`
 - `getAllCategories()`
 
-Favoriler
+Favori işlemleri
 - `getUserFavorites(userId)`
 - `addToFavorites(userId, scriptId)`
 - `removeFromFavorites(userId, scriptId)`
 
-**FaqService** (`lib/services/faq_service.dart`) SSS verisini asset'ten yüklüyor (`loadFaqItems()`) ve içinde arama yapıyor (`searchFaqItems()`), hata yönetimi ve tip güvenli parsing ile.
+**FaqService** (`lib/services/faq_service.dart`) SSS verisini asset dosyasından okuyor (`loadFaqItems()`) ve sorular arasında arama yapmayı sağlıyor (`searchFaqItems()`). Okuma sırasındaki hatalar yakalanıyor ve veri tip güvenli şekilde ayrıştırılıyor.
 
-**AuthService** (`lib/services/auth_service.dart`) ilk sürümde SharedPreferences ve asset JSON dosyasıyla çalışıyordu, sonra MockApiService üzerinden HTTP isteklerine geçirildi. API'den gelen string ID'leri integer'a çeviriyor ve istek hatalarını yönetiyor.
+**AuthService** (`lib/services/auth_service.dart`) ilk sürümde SharedPreferences ve asset içindeki bir JSON dosyasıyla çalışıyordu. Daha sonra MockApiService üzerinden HTTP istekleri yapacak şekilde yeniden yazıldı. API'den metin olarak gelen ID'leri sayıya çeviriyor ve istek hatalarını ele alıyor.
 
 Giriş akışı
 
 ```
 userData = await MockApiService.loginUser(email, password)
 → TabloUyeler.fromJson(userData)
-→ Token oluşturma
-→ SharedPreferences ile kalıcı saklama
+→ Token oluşturulması
+→ Oturumun SharedPreferences ile saklanması
 ```
 
 ### db.json Yapısı
 
-Gerçek veritabanı şemasına uygun olarak tasarlandı.
+Gerçek veritabanı şemasına göre hazırlandı.
 
 ```
 {
@@ -309,17 +307,19 @@ Gerçek veritabanı şemasına uygun olarak tasarlandı.
 }
 ```
 
-### REST Endpoint'leri (json-server tarafından otomatik oluşturulur)
+### REST Uç Noktaları
+
+json-server bu dosyadan uç noktaları otomatik olarak oluşturuyor. Birkaç örnek.
 
 ```
 GET    /uyeler              # Tüm kullanıcılar
 POST   /uyeler              # Yeni kullanıcı
-PUT    /uyeler/1            # Kullanıcı güncelle
-DELETE /uyeler/1            # Kullanıcı sil
+PUT    /uyeler/1            # Kullanıcıyı güncelle
+DELETE /uyeler/1            # Kullanıcıyı sil
 
-GET    /favorites?user_id=1 # Query parametreleri
+GET    /favorites?user_id=1 # Bir kullanıcının favorileri
 POST   /favorites           # Favori ekle
-DELETE /favorites/1         # Favori sil
+DELETE /favorites/1         # Favoriyi sil
 ```
 
 </details>
