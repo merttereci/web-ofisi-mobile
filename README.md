@@ -1,443 +1,325 @@
-# Web Ofisi Mobile - Flutter E-Ticaret Uygulaması
-
-Kurumsal web yazılımları satışı için geliştirilmiş Flutter e-ticaret uygulaması. 158 adet hazır web scripti listeleyen, kullanıcı kayıt/giriş sistemi olan, favoriler ve sepet özellikli modern mobil uygulama.
-
-## Proje Açıklaması
-
-Web Ofisi Mobile, kurumsal web yazılımları satışı için geliştirilmiş modern bir Flutter e-ticaret uygulamasıdir. **İki farklı veri kaynağı** kullanarak hybrid bir yaklaşım benimser: XML den 158 adet hazır web scripti çekerken(ürünler), kullanıcı verilerini JSON Mock Server üzerinden yönetir (gelecekte API üzerinden veritabanına bağlanarak).
-
-## Dizin Yapısı
-```
-assets/
-├──data/   
-   ├── cities.json                 # Türkiye il/ilçe verileri
-   └── faq_data.json               # Sık sorulan sorular verisi
-├──launcher/
-   └── icon.png
-├──logo/
-   └── logo.png    
-lib/
-├── main.dart                          # Ana uygulama dosyası ve Provider yapılandırması
-├── models/                            # Veri modelleri
-│   ├── tables/                        # Veritabanı tablo modelleri
-│   │   ├── banka_hesaplari.dart       
-│   │   ├── destek_cevaplar.dart       
-│   │   ├── destek.dart                
-│   │   ├── hosting_siparisler.dart    
-│   │   ├── indirim_kuponlari.dart     
-│   │   ├── kategoriler.dart           
-│   │   ├── krediler.dart              
-│   │   ├── scriptler.dart            
-│   │   ├── siparisler.dart           
-│   │   ├── slider.dart               
-│   │   └── uyeler.dart                
-│   ├── product.dart                   # Ana ürün modeli (XML verisi)
-│   ├── hosting_cart_item.dart         
-│   ├── register_form_data.dart
-│   ├── faq_item.dart                  
-│   └── support_ticket_form_data.dart  
-├── providers/                         
-│   ├── cart_provider.dart             # Sepet state yönetimi (minimal ID-based)
-│   ├── product_provider.dart          
-│   ├── favorites_provider.dart        
-│   └── user_provider.dart             
-├── screens/                          
-│   ├── tabs/                         
-│   │   ├── home_tab.dart              
-│   │   ├── products_tab.dart         
-│   │   ├── hosting_tab.dart           
-│   │   ├── support_tab.dart          
-│   │   └── profile_tab.dart         
-│   ├── auth_screen.dart                # Giriş ekranı
-│   ├── scrollable_register_screen.dart # Multi-step kayıt ekranı
-│   ├── cart_screen.dart               # Sepet ekranı (modal)
-│   ├── favorites_screen.dart          
-│   ├── home_screen.dart               # Ana sayfa ekranı (AppBarlı: sepet ve favori)
-│   ├── main_screen.dart               # Ana ekran (5-tab navigation)
-│   ├── product_detail_screen.dart     
-│   ├── product_list_screen.dart       # Ürün listesi ekranı (AppBarlı: sepet ve favori)
-│   ├── hosting_screen.dart            
-│   ├── support_screen.dart            
-│   └── profile_screen.dart            
-├── services/                          
-│   ├── auth_service.dart              # Mock API entegrasyonu ile kimlik doğrulama
-│   ├── mock_api_service.dart          # JSON Mock Server HTTP servisi
-│   ├── product_service.dart           # Ürün API servisi (XML parser)
-│   └── faq_service.dart               # FAQ veri servisi
-└── widgets/                           
-    ├── cart_modal_widget.dart         # Reusable sepet modal widget
-    ├── custom_bottom_navbar.dart      # 5-tab navigationlı özel bottomnavbar
-    ├── flash_card_widget.dart         # Flash kartlar; promosyonlar, haberler, tanıtımlar, için
-    ├── product_card_v2.dart           # Kompakt ürün kartı (ana sayfa)
-    ├── product_details_widgets/       
-    │   ├── product_demo_buttons.dart  
-    │   ├── product_description_section.dart 
-    │   ├── product_detail_row.dart   
-    │   └── product_image_gallery.dart 
-    ├── product_lists_widgets/         
-    │   ├── category_selector_modal.dart 
-    │   ├── compact_search_widget.dart # Kompakt arama + kategori widget
-    │   ├── error_widget.dart          
-    │   ├── loading_widget.dart        
-    │   ├── pagination_widget.dart     
-    │   └── product_card.dart          # Ana ürün kartı (ürünler sayfası)
-db.json                                # JSON Mock Server veritabanı
-```
-
-## Mevcut Özellikler
-
-#### Çalışan Ana Özellikler
-- **Mock veritabanı** kullanıcı kimlik doğrulama sistemi (HTTP persistence)
-- XML'den 158 ürünün çekilmesi, arama ve kategori filtreleme 
-- Sayfalama ile optimize edilmiş ürün listesi yönetimi 
-- Minimal sepet sistemi (ID-based , KDV hesaplaması) 
-- 5-tab responsive tasarım ve state preservation 
-- Reusable widget'lar ile tutarlı UI deneyimi
-- Hosting paketlerinin listelenmesi ve carta ekleme
-- Ürünlerin favori ikonuna tıklayarak favorileme
-- JSON Mock Server entegrasyonu ve gerçek HTTP authentication sistemi, favoriler mantığı, uilar da tamamlandı
-- Hosting paketlerinin listelenmesi ve carta ekleme
-- Ürünlerin favori ikonuna tıklayarak favorileme
-
-### Kapsamlı Destek Sistemi**
-- **FAQ Sistemi**: 11 adet detaylı sık sorulan soru
-- **ExpansionTile Interface**: Accordion-style açılabilir sorular
-- **YouTube Entegrasyonu**: Video tutorial linkleri
-- **Download Linkleri**: Ek dosya ve araç indirmeleri
-- **Destek Talebi Formu**: Kullanıcı bilgileri otomatik doldurma
-- **Multi-field Form**: Departman, öncelik, hizmet seçimi
-- **Image Upload**: Kamera/galeri ile fotoğraf ekleme
-- **Form Validation**: Comprehensive input kontrolü
-- **Complete Form Submission**: MockApiService entegrasyonu ile db.json'a veri yazma
-
-### Gelişmiş Navigation Sistemi**
-- **5-Tab Bottom Navigation**: Ana Sayfa, Ürünler, Hosting, Destek, Profil
-- **3-Tab Destek Sistemi**: S.S.S, Yeni Talep, Geçmiş Talepler
-- **State Preservation**: Tab değişimlerinde veri korunması
-- **Responsive Design**: Tüm ekran boyutlarında optimize edilmiş
-
-
-### Gerçek Backend Deneyimi**
-- **Gerçek HTTP Authentication**: MockApiService ile login/register
-- **Database-like operations**: CRUD işlemleri JSON Mock Server üzerinde
-- **Real-time data persistence**: Değişiklikler db.json dosyasına yazılır
-- **Session management**: Token-based authentication
-- **Type-safe data handling**: String ID'lerin integer'a dönüştürülmesi
-
-### Enhanced User Management**
-- **Production-ready login flow**: Email/password validation
-- **Real user registration**: Form validation ve duplicate email kontrolü
-- **Profile management**: Kullanıcı bilgilerini güncelleyebilme
-- **Session persistence**: App restart'ta otomatik login
-
-
-### Temel Akış
-
-- Uygulama açılır: AuthWrapper kullanıcı giriş kontrolü yapar
-- Ana sayfa: Flash kartlar + XML'den ilk 6 ürün horizontal scroll
-- Ürünler sayfası: Tüm ürünler, arama, kategori filtreleme, sayfalama
-- Favoriler: Login gerekli, Mock API ile gerçek HTTP CRUD
-- Sepet: Sayfa olarak açılır, KDV hesaplama, ürün toggle
-- Destek: FAQ browsing + destek talebi oluşturma + ticket tracking
-
-### **Favoriler Sistemi Altyapısı 
-Mock API Server'da favorites tablosu mevcut ve MockApiService'te endpoint'ler hazır:
-- Database schema: user_id, script_id, created_at
-- CRUD operations: add, remove, list favorites
-- Real-time data synchronization
-- UI done
-
-### Sepet Sistemi ve E-ticaret
-Sepet sistemi Set<int> veri yapısı ile sadece ürün ID'lerini saklayarak memory kullanımını optimize ediyor. Her ürün için toggle mantığı (ekle/çıkar) kullanılıyor. Yüzde 20 KDV hesaplaması otomatik olarak yapılıyor ve fiyat detayları (ara toplam, KDV, genel toplam) ayrı ayrı gösteriliyor. CartModalWidget ile tüm uygulamada tutarlı sepet deneyimi sunuluyor.
-
-
-### **Provider Bağımlılıkları ve State Yönetimi**
-MultiProvider yapısı ile ProductProvider (158 ürün + filtreleme), UserProvider (Mock API auth + profile) ve CartProvider (minimal sepet) merkezi olarak yönetiliyor. FavoritesProvider: Mock API, real-time sync ve Consumer2 pattern'i ile CartProvider ve ProductProvider'ın birlikte kullanıldığı ekranlarda optimize edilmiş rendering sağlanıyor.
-
-### Veri Modelleri ve Optimizasyon**
-- **Product.dart**: XML parsing ile 158 ürünü yönetiyor
-- **TabloUyeler ve diğer tablo modelleri**: JSON Mock Server ile uyumlu
-- **MockApiService**: HTTP istekleri ile REST API simulation
-- **AuthService**: Production-ready authentication patterns
-
-### **Uzun Vadeli İyileştirmeler**
-- **Real API transition**: JSON Mock Server'dan production API'ye geçiş (sadece URL değişikliği gerekli)
-- Ödeme sistemi entegrasyonu
-- **Sipariş takip sistemi**: Mock API'deki orders tablosunu kullanarak
-- **Ürün karşılaştırma özelliği**: MockApiService ile comparison endpoint'leri
-- Advanced analytics ve user behavior tracking
-- **Progressive web app desteği**: Mevcut HTTP infrastructure ile uyumlu
-
-## **PERFORMANS VE OPTİMİZASYON**
-
-### **Yeni Network ve Storage Verimliliği**
-- **HTTP connection pooling**: Efficient API requests
-- **Real-time data synchronization**: JSON Mock Server ile
-- **Type-safe data parsing**: Runtime type checking ve conversion
-- **Production-ready architecture**: Mock'tan real API'ye seamless transition
-
-### Memory ve Storage Verimliliği
-Sepet sistemi ID-based storage ile her ürün için sadece 4-8 byte kullanıyor. ProductProvider single source of truth prensibi ile duplicate data'yı engelliyor. Lazy loading ve error handling ile robust image management sağlanıyor. **SharedPreferences ile enhanced session management** gerçekleştiriliyor.
-
-### **Yeni Kullanıcı Deneyimi ve Responsive Design**
-- **Real-time authentication feedback** ile instant user response
-- **Network-aware error handling** ile robust user experience
-- **Seamless session management** ile uninterrupted user journey
-- Gerçek zamanlı sepet badge güncellemeleri ile instant feedback (değişiklik yok)
-- IndexedStack ile smooth tab navigation ve state preservation (değişiklik yok)
-
-## MİMARİ YAPI**
-
-### **Hybrid Data Architecture**
-- **XML**: Ürün bilgileri (product.dart modeli ile 158 script)
-- **JSON Mock Server**: Kullanıcı, sipariş, favoriler ve tüm işlem verileri
-- **SharedPreferences**: Oturum persistance ve cache
-
-### State Management
-MVVM mimarisi kullanılarak Provider pattern ile reactive state yönetimi gerçekleştiriliyor. **UserProvider artık gerçek HTTP istekleri** yaparak Mock API Server ile entegre çalışmaktadır. Örnek: CartProvider minimal veri saklama prensibi ile sadece ürün ID'lerini saklayarak memory optimizasyonu yapıyor. Tüm veriler SharedPreferences ile kalıcı olarak saklanıyor.
-
-### JSON Mock Server Entegrasyonu**
-Production-ready bir backend deneyimi sağlamak için **json-server** kullanılmaktadır. Bu yaklaşım:
-- Gerçek HTTP istekleri (GET, POST, PUT, DELETE)
-- RESTful API deneyimi
-- Gerçek zamanlı veri güncellemeleri
-- Production API'ye kolay geçiş imkanı sağlar
-
-## Uygulama Ekranları
-
-### Kimlik Doğrulama
-<div align="center">
-  <img src="screenshots/01_auth_screen.png" width="200" alt="Auth Screen"/>
-  <img src="screenshots/02_register_screen.png" width="200" alt="Register 1"/>
-  <img src="screenshots/03_register_screen.png" width="200" alt="Register 2"/>
-  <img src="screenshots/04_register_screen.png" width="200" alt="Register 3"/>
-</div>
-
-*Giriş yapma ya da kayıt olmaya gitme ekranı - Kayıt olma ekranı*
-
-### Ana Sayfa
-<div align="center">
-  <img src="screenshots/05_home_screen.png" width="200" alt="Home Empty"/>
-  <img src="screenshots/06_home_screen.png" width="200" alt="Home With Items"/>
-</div>
-
-*Ana sayfa - Ana sayfa (rastgele bir ürünün sepete ve favorilere eklenmiş hali)*
-
-### Ürün Listesi ve Detay
-<div align="center">
-  <img src="screenshots/07_product_list_screen.png" width="200" alt="Product List"/>
-  <img src="screenshots/08_product_list_screen.png" width="200" alt="Category Modal"/>
-  <img src="screenshots/09_product_list_screen.png" width="200" alt="Filtered Products"/>
-</div>
-
-*Ürün listesi - Kategori seçici - Filtrelenmiş liste*
-
-<div align="center">
-  <img src="screenshots/10_product_detail_screen.png" width="200" alt="Product Detail"/>
-  <img src="screenshots/11_product_detail_screen.png" width="200" alt="Product Detail Actions"/>
-</div>
-
-*Ürün detay sayfası - Ürün detay sayfası (butonlara tıklanmış hali)*
-
-### Hosting Hizmetleri
-<div align="center">
-  <img src="screenshots/12_hosting_screen.png" width="200" alt="Hosting 1"/>
-  <img src="screenshots/13_hosting_screen.png" width="200" alt="Hosting 2"/>
-  <img src="screenshots/14_hosting_screen.png" width="200" alt="Hosting Dialog"/>
-  <img src="screenshots/15_hosting_screen.png" width="200" alt="Hosting Dialog Active"/>
-</div>
-
-*Hosting hizmetleri listesi - Sepete Ekleme Dialogu (inaktif butonlu) - Bilgiler girildikten sonra aktif butonlu*
-
-### Destek Sistemi
-<div align="center">
-  <img src="screenshots/16_support_screen.png" width="200" alt="Support FAQ"/>
-  <img src="screenshots/17_support_screen.png" width="200" alt="Support FAQ Expanded"/>
-  <img src="screenshots/18_support_screen.png" width="200" alt="Support New Request 1"/>
-  <img src="screenshots/19_support_screen.png" width="200" alt="Support New Request 2"/>
-</div>
-
-*Sıkça sorulan sorular - Genişletilmiş bir sıkça sorulan soru elementi - Yeni talep oluşturma*
-
-### Profil
-<div align="center">
-  <img src="screenshots/20_profile_screen.png" width="200" alt="Profile 1"/>
-  <img src="screenshots/21_profile_screen.png" width="200" alt="Profile 2 Logout"/>
-</div>
-
-*Profil ekranı - Profil ekranı (çıkış dialog'u ile)*
-
-###  Favoriler
-<div align="center">
-  <img src="screenshots/22_favorites_screen.png" width="200" alt="Favorites"/>
-</div>
-
-*Favoriler ekranı*
-
-### Sepet ve Ödeme Sistemi
-<div align="center">
-  <img src="screenshots/23_cart_screen.png" width="200" alt="Cart Mixed"/>
-  <img src="screenshots/24_cart_screen.png" width="200" alt="Cart Scripts"/>
-  <img src="screenshots/25_checkout_screen.png" width="200" alt="Checkout 1"/>
-  <img src="screenshots/26_checkout_screen.png" width="200" alt="Checkout 2"/>
-</div>
-
-*Karışık ürünlü sepet - Web scriptleri(tek tür ürün) sepeti - Checkout ekranı*
-
-<div align="center">
-  <img src="screenshots/27_order_success_screen.png" width="200" alt="Order Success"/>
-</div>
-
-*Prototip sipariş başarılı ekranı*
-
-
-
-## ** SERVİS KATMANI**
-
-### **MockApiService (lib/services/mock_api_service.dart)**
-JSON Mock Server ile iletişimi sağlayan kapsamlı HTTP servisi:
-
-**Destek İşlemleri:**
-- `createSupportTicket(ticketData)` - Yeni destek talebi (calısıyo)
-- `getUserTickets(userId)` - Kullanıcının talepleri (yapılacak)
-- `updateTicketStatus(ticketId, status)` - Talep durumu güncelleme (yapılacak)
-
-**Kullanıcı İşlemleri:**
-- `loginUser(email, password)` - Kullanıcı girişi
-- `registerUser(userData)` - Yeni kullanıcı kaydı
-- `updateUser(userId, userData)` - Kullanıcı profili güncelleme
-
-**Script İşlemleri:**
-- `getAllScripts()` - Tüm scriptleri getir
-- `getScriptById(scriptId)` - Script detayları
-- `getAllCategories()` - Kategorileri getir
-
-**Favoriler İşlemleri:**
-- `getUserFavorites(userId)` - Kullanıcının favorileri
-- `addToFavorites(userId, scriptId)` - Favori ekle
-- `removeFromFavorites(userId, scriptId)` - Favori sil
-
-### **FaqService (lib/services/faq_service.dart)**
-Asset tabanlı FAQ veri yönetimi:
-- `loadFaqItems()` - FAQ verilerini asset'ten yükleme
-- `searchFaqItems()` - FAQ arama fonksiyonu
-- Error handling ve type-safe data parsing
-
-
-### **AuthService (lib/services/auth_service.dart)**
-**BÜYÜK DEĞİŞİKLİK:** Asset-based mock veriler yerine Mock API Server kullanımı
-
-**Önceki versiyon:** SharedPreferences ve asset JSON dosyası
-**Güncel versiyon:** HTTP istekleri ve gerçek API davranışı
-
-**Yeni özellikler:**
-- MockApiService entegrasyonu
-- Type-safe ID handling (string ID'leri integer'a dönüştürme)
-- Comprehensive error handling
-- Production-ready authentication flow
-
-**Login akışı:**
-```dart
-userData = await MockApiService.loginUser(email, password)
-→ TabloUyeler.fromJson(userData)
-→ Token generation
-→ SharedPreferences persistence
-```
-
-## **JSON Mock Server Konfigürasyonu**
-
-### **db.json Yapısı**
-Gerçek veritabanı şemasına uygun olarak tasarlanmış:
-
-```json
-{
-  "uyeler": [...],           // TabloUyeler modeline uygun
-  "scriptler": [...],        // TabloScriptler modeline uygun  
-  "kategoriler": [...],      // TabloKategoriler modeline uygun
-  "siparisler": [...],       // TabloSiparisler modeline uygun
-  "favorites": [...],        // user_id, script_id, created_at
-  "krediler": [...],         // TabloKrediler modeline uygun
-  "destek": [...],           // TabloDestek modeline uygun
-  "destek_cevaplar": [...],  // TabloDestekCevaplar modeline uygun
-  "hosting_siparisler": [...], // TabloHostingSiparisler modeline uygun
-  "indirim_kuponlari": [...], // TabloIndirimKuponlari modeline uygun
-  "banka_hesaplari": [...],  // TabloBankaHesaplari modeline uygun
-  "slider": [...]            // TabloSlider modeline uygun
-}
-```
-
-
-
-### **Otomatik REST Endpoints**
-```
-GET    /uyeler              # Tüm kullanıcılar
-POST   /uyeler              # Yeni kullanıcı
-PUT    /uyeler/1            # Kullanıcı güncelle
-DELETE /uyeler/1            # Kullanıcı sil
-
-GET    /favorites?user_id=1 # Query parameters
-POST   /favorites           # Favori ekle
-DELETE /favorites/1         # Favori sil
-```
-
-
-## **PRODUCTION GEÇİŞ STRATEJISI**
-
-### **Mock'tan Real API'ye Geçiş**
-Mevcut JSON Mock Server yapısı, production PHP API'ye geçiş için optimum hazırlık sağlamaktadır:
-
-1. **URL değişikliği**: MockApiService'te sadece baseUrl güncellenmesi yeterli
-2. **HTTP method compatibility**: Aynı REST endpoint'ler kullanılabilir
-3. **Data model compatibility**: Tablo modelleri gerçek veritabanı ile uyumlu
-4. **Authentication flow**: Token-based system production-ready
+# Web Ofisi Mobile
+
+**English** | [Türkçe](README.tr.md)
+
+A Flutter e-commerce app for selling ready-made web software (scripts) and hosting packages, developed solo as a 30-day internship project. It lists 158 web scripts from an XML feed and handles user accounts, favorites, cart, checkout and support tickets through a REST API simulated with json-server.
+
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/01_auth_screen.png" width="180"><br>Login</td>
+    <td align="center"><img src="screenshots/06_home_screen.png" width="180"><br>Home</td>
+    <td align="center"><img src="screenshots/07_product_list_screen.png" width="180"><br>Product list</td>
+    <td align="center"><img src="screenshots/10_product_detail_screen.png" width="180"><br>Product detail</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/12_hosting_screen.png" width="180"><br>Hosting packages</td>
+    <td align="center"><img src="screenshots/18_support_screen.png" width="180"><br>New support ticket</td>
+    <td align="center"><img src="screenshots/23_cart_screen.png" width="180"><br>Cart</td>
+    <td align="center"><img src="screenshots/25_checkout_screen.png" width="180"><br>Checkout</td>
+  </tr>
+</table>
+
+## Tech Stack
+
+- Flutter and Dart
+- Provider for state management
+- json-server as a mock REST backend (db.json)
+- XML parsing for the product catalog
+- SharedPreferences for session persistence
+
+## Features
+
+### Accounts
+- Login and multi-step registration with form validation and duplicate email check
+- Token-based session that persists across app restarts
+- Profile view and update
+
+### Products
+- 158 web scripts loaded from XML
+- Search, category filtering and pagination
+- Product detail page with image gallery and demo buttons
+- Home page with promotional flash cards and a horizontal product strip
+
+### Cart and Checkout
+- Scripts and hosting packages in the same cart
+- Hosting packages added through a dialog whose button activates once the required info is entered
+- Cart keeps only product IDs in a Set, with an add/remove toggle
+- Subtotal, 20% VAT and total shown separately
+- Checkout flow that writes the order to the mock database (prototype, no real payment)
+
+### Favorites
+- Add and remove favorites per user through the mock API
+
+### Support
+- FAQ with 11 expandable questions, YouTube tutorial links and download links
+- Support ticket form with auto-filled user info and department, priority and service selection
+- Photo attachment from camera or gallery with compression (max width 1024, quality 80)
+- Tickets are written to db.json
+
+### Navigation
+- 5-tab bottom navigation (Home, Products, Hosting, Support, Profile)
+- Tab state preserved with IndexedStack
+- Support section split into FAQ, New Request and Past Requests tabs
+
+## Architecture
+
+The app uses two data sources.
+
+- **XML** for the product catalog
+- **json-server** for users, orders, favorites, support tickets and the other tables
+- **SharedPreferences** for session and cache
+
+State is managed with Provider through a MultiProvider setup (ProductProvider, UserProvider, CartProvider, FavoritesProvider). Screens that need both cart and product data use Consumer2.
+
+The models under `lib/models/tables` mirror the tables of the real backend database (members, scripts, categories, orders, credits, support, hosting orders, discount coupons, bank accounts, slider). The REST endpoints follow the same structure, so the move to the production API is designed to mainly require changing `baseUrl` in `MockApiService`.
 
 ```dart
-// Development
+// Development (Android emulator)
 static const String baseUrl = 'http://10.0.2.2:3000';
 
 // Production
 static const String baseUrl = 'https://yourdomain.com/api';
 ```
 
-Kod değişikliği **minimum** düzeyde kalacaktır.
+### Project Structure
 
-**Son Güncelleme:** Sipariş verme simülasyonu tamamlandı, dbye siparişler yazılabiliyor"
-**Toplam Dosya Sayısı:** 40+ dart dosyası + assets + mock server configuration  
-**Ana Özellikler:** **Real HTTP authentication**, **comprehensive support system**, ürün browsing, optimized cart system, responsive UI, **production-ready backend simulation**  
-**Mimari:** **Clean Architecture + HTTP Services**, Provider pattern, Widget-based modular design, **Mock-to-Production transition ready**
+```
+lib/
+├── main.dart        # App entry and Provider setup
+├── models/          # Data models, tables/ mirrors the backend schema
+├── providers/       # Cart, product, favorites and user state
+├── screens/         # Screens and the 5 main tabs
+├── services/        # MockApiService, AuthService, ProductService (XML), FaqService
+└── widgets/         # Reusable UI components
+assets/data/         # Turkey city/district data and FAQ data
+db.json              # json-server database
+```
 
-### **Uzun Vadeli İyileştirmeler**
-- Real API transition: JSON Mock Server'dan production API'ye geçiş
-- Ödeme sistemi entegrasyonu
-- Sipariş takip sistemi: Mock API'deki orders tablosunu kullanarak
-- Ürün karşılaştırma özelliği: MockApiService ile comparison endpoint'leri
-- Advanced analytics ve user behavior tracking
-- Progressive web app desteği: Mevcut HTTP infrastructure ile uyumlu
+## Getting Started
 
-Image Upload Mevcut Durumu:
-Çalışan Kısımlar:
+Requires the Flutter SDK and Node.js.
 
- + Kamera/galeri seçimi modal'ı
- + Image picker fonksiyonu
- + Seçilen resmin thumbnail preview'ı
- + Resmi form'dan kaldırma
- + Image compression (maxWidth: 1024, quality: 80)
+```bash
+# Install dependencies
+flutter pub get
 
-Çalışmayan/Eksik Kısımlar:
+# Start the mock backend on port 3000
+npx json-server db.json --port 3000
 
- - Resmin gerçek verisi veritabanına kaydedilmiyor
- - Sadece "Fotoğraf eklendi" text'i yazılıyor
- - Base64 encoding yapılmıyor
- - File storage/retrieval sistemi yok
----
+# Run the app
+flutter run
+```
 
+The default `baseUrl` (10.0.2.2) reaches the host machine from an Android emulator. For other platforms or a physical device, it can be changed in `lib/services/mock_api_service.dart`.
 
-Nerede Kaldık?
+## Known Limitations
 
-imageda base64 denenicek (düşük öncelik)
-support ticket gönderildikten sonra form temizlenip sayfa başına scroll edilsin
-geçmiş sonraya
-support ticketta kullanıcı idye göre sipariş seçebilme seçeneği
-i
+- Attached photos are not stored yet. Only a placeholder text is saved with the ticket.
+- Listing past tickets and updating ticket status are not implemented in the service layer yet.
+- Payment is not integrated. Checkout is a simulation that writes the order to db.json.
+- The backend is a mock. The production PHP API is not connected.
 
-...
+## Possible Next Steps
+
+- Connecting to the production API
+- Payment integration
+- Order tracking using the existing orders table
+- Product comparison
+- Progressive web app support
+
+## All Screenshots
+
+<details>
+<summary>Show all</summary>
+
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/02_register_screen.png" width="180"><br>Register, step 1</td>
+    <td align="center"><img src="screenshots/03_register_screen.png" width="180"><br>Register, step 2</td>
+    <td align="center"><img src="screenshots/04_register_screen.png" width="180"><br>Register, step 3</td>
+    <td align="center"><img src="screenshots/05_home_screen.png" width="180"><br>Home, empty</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/08_product_list_screen.png" width="180"><br>Category selector</td>
+    <td align="center"><img src="screenshots/09_product_list_screen.png" width="180"><br>Filtered list</td>
+    <td align="center"><img src="screenshots/11_product_detail_screen.png" width="180"><br>Product detail actions</td>
+    <td align="center"><img src="screenshots/13_hosting_screen.png" width="180"><br>Hosting packages</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/14_hosting_screen.png" width="180"><br>Add to cart dialog</td>
+    <td align="center"><img src="screenshots/15_hosting_screen.png" width="180"><br>Dialog, button active</td>
+    <td align="center"><img src="screenshots/16_support_screen.png" width="180"><br>FAQ</td>
+    <td align="center"><img src="screenshots/17_support_screen.png" width="180"><br>FAQ expanded</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/19_support_screen.png" width="180"><br>New ticket, continued</td>
+    <td align="center"><img src="screenshots/20_profile_screen.png" width="180"><br>Profile</td>
+    <td align="center"><img src="screenshots/21_profile_screen.png" width="180"><br>Logout dialog</td>
+    <td align="center"><img src="screenshots/22_favorites_screen.png" width="180"><br>Favorites</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/24_cart_screen.png" width="180"><br>Cart, scripts only</td>
+    <td align="center"><img src="screenshots/26_checkout_screen.png" width="180"><br>Checkout, continued</td>
+    <td align="center"><img src="screenshots/27_order_success_screen.png" width="180"><br>Order success</td>
+    <td></td>
+  </tr>
+</table>
+
+</details>
+
+## Technical Details
+
+<details>
+<summary>Show technical details</summary>
+
+### Full Directory Structure
+
+```
+assets/
+├── data/
+│   ├── cities.json                 # Turkey city/district data
+│   └── faq_data.json               # FAQ data
+├── launcher/
+│   └── icon.png
+└── logo/
+    └── logo.png
+lib/
+├── main.dart                          # App entry and Provider setup
+├── models/                            # Data models
+│   ├── tables/                        # Database table models
+│   │   ├── banka_hesaplari.dart
+│   │   ├── destek_cevaplar.dart
+│   │   ├── destek.dart
+│   │   ├── hosting_siparisler.dart
+│   │   ├── indirim_kuponlari.dart
+│   │   ├── kategoriler.dart
+│   │   ├── krediler.dart
+│   │   ├── scriptler.dart
+│   │   ├── siparisler.dart
+│   │   ├── slider.dart
+│   │   └── uyeler.dart
+│   ├── product.dart                   # Main product model (XML data)
+│   ├── hosting_cart_item.dart
+│   ├── register_form_data.dart
+│   ├── faq_item.dart
+│   └── support_ticket_form_data.dart
+├── providers/
+│   ├── cart_provider.dart             # Cart state (minimal, ID-based)
+│   ├── product_provider.dart
+│   ├── favorites_provider.dart
+│   └── user_provider.dart
+├── screens/
+│   ├── tabs/
+│   │   ├── home_tab.dart
+│   │   ├── products_tab.dart
+│   │   ├── hosting_tab.dart
+│   │   ├── support_tab.dart
+│   │   └── profile_tab.dart
+│   ├── auth_screen.dart                # Login screen
+│   ├── scrollable_register_screen.dart # Multi-step registration
+│   ├── cart_screen.dart                # Cart screen (modal)
+│   ├── favorites_screen.dart
+│   ├── home_screen.dart                # Home with app bar (cart and favorites)
+│   ├── main_screen.dart                # Main screen (5-tab navigation)
+│   ├── product_detail_screen.dart
+│   ├── product_list_screen.dart        # Product list with app bar (cart and favorites)
+│   ├── hosting_screen.dart
+│   ├── support_screen.dart
+│   └── profile_screen.dart
+├── services/
+│   ├── auth_service.dart              # Authentication via the mock API
+│   ├── mock_api_service.dart          # HTTP service for json-server
+│   ├── product_service.dart           # Product service (XML parser)
+│   └── faq_service.dart               # FAQ data service
+└── widgets/
+    ├── cart_modal_widget.dart         # Reusable cart modal
+    ├── custom_bottom_navbar.dart      # Custom 5-tab bottom navbar
+    ├── flash_card_widget.dart         # Cards for promotions, news and announcements
+    ├── product_card_v2.dart           # Compact product card (home)
+    ├── product_details_widgets/
+    │   ├── product_demo_buttons.dart
+    │   ├── product_description_section.dart
+    │   ├── product_detail_row.dart
+    │   └── product_image_gallery.dart
+    └── product_lists_widgets/
+        ├── category_selector_modal.dart
+        ├── compact_search_widget.dart # Compact search and category widget
+        ├── error_widget.dart
+        ├── loading_widget.dart
+        ├── pagination_widget.dart
+        └── product_card.dart          # Main product card (products page)
+db.json                                # json-server database
+```
+
+### Service Layer
+
+**MockApiService** (`lib/services/mock_api_service.dart`) handles all HTTP communication with json-server.
+
+Support
+- `createSupportTicket(ticketData)` creates a new ticket
+- `getUserTickets(userId)` lists a user's tickets (planned)
+- `updateTicketStatus(ticketId, status)` updates ticket status (planned)
+
+Users
+- `loginUser(email, password)`
+- `registerUser(userData)`
+- `updateUser(userId, userData)`
+
+Scripts
+- `getAllScripts()`
+- `getScriptById(scriptId)`
+- `getAllCategories()`
+
+Favorites
+- `getUserFavorites(userId)`
+- `addToFavorites(userId, scriptId)`
+- `removeFromFavorites(userId, scriptId)`
+
+**FaqService** (`lib/services/faq_service.dart`) loads FAQ data from assets (`loadFaqItems()`) and searches it (`searchFaqItems()`), with error handling and type-safe parsing.
+
+**AuthService** (`lib/services/auth_service.dart`) was first built on SharedPreferences and an asset JSON file, then moved to HTTP requests through MockApiService. It converts string IDs from the API to integers and handles request errors.
+
+Login flow
+
+```
+userData = await MockApiService.loginUser(email, password)
+→ TabloUyeler.fromJson(userData)
+→ Token generation
+→ SharedPreferences persistence
+```
+
+### db.json Structure
+
+Designed to match the real database schema.
+
+```
+{
+  "uyeler": [...],              // TabloUyeler
+  "scriptler": [...],           // TabloScriptler
+  "kategoriler": [...],         // TabloKategoriler
+  "siparisler": [...],          // TabloSiparisler
+  "favorites": [...],           // user_id, script_id, created_at
+  "krediler": [...],            // TabloKrediler
+  "destek": [...],              // TabloDestek
+  "destek_cevaplar": [...],     // TabloDestekCevaplar
+  "hosting_siparisler": [...],  // TabloHostingSiparisler
+  "indirim_kuponlari": [...],   // TabloIndirimKuponlari
+  "banka_hesaplari": [...],     // TabloBankaHesaplari
+  "slider": [...]               // TabloSlider
+}
+```
+
+### REST Endpoints (generated by json-server)
+
+```
+GET    /uyeler              # All users
+POST   /uyeler              # New user
+PUT    /uyeler/1            # Update user
+DELETE /uyeler/1            # Delete user
+
+GET    /favorites?user_id=1 # Query parameters
+POST   /favorites           # Add favorite
+DELETE /favorites/1         # Remove favorite
+```
+
+</details>
